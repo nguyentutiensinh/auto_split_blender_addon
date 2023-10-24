@@ -4,7 +4,7 @@ bl_info = {
     "location": "View3D > Add > Mesh > Auto Split",
     "description": "Auto Split vertex, edge, face",
     "author": "nguyendinhat",
-    "version": (1,0),
+    "version": (1,1),
     "blender": (3,6,3),
     "category": "Mesh",
 }
@@ -21,13 +21,13 @@ class VIEW3D_OT_auto_split(bpy.types.Operator):
         select_mode = bpy.context.tool_settings.mesh_select_mode
         if select_mode[0]:
             bpy.ops.mesh.edge_split(type='VERT')
-            self.report({"INFO"}, "bpy.ops.mesh.edge_split(type='VERT')")
+            self.report({"INFO"}, "An object was splited by VERTEX")
         if select_mode[1] and not select_mode[2]:
             bpy.ops.mesh.edge_split(type='EDGE')
-            self.report({"INFO"}, "bpy.ops.mesh.edge_split(type='EDGE')")
+            self.report({"INFO"}, "An object was splited by EDGE")
         if select_mode[2] and not select_mode[1]:
             bpy.ops.mesh.split()
-            self.report({"INFO"}, "bpy.ops.mesh.split()")
+            self.report({"INFO"}, "An object was splited by FACE")
         return {'FINISHED'}
 
 def register():
